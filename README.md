@@ -39,3 +39,24 @@ https://www.chromium.org/developers/design-documents
     # 大约需要半小时到一小时
     fetch chromium 
    ```
+2. 准备构建环境
+   ```shell
+    # check CPU
+    uname -m
+    # modify cpu args
+    gn args out/Default
+    # insert args
+    target_os = "mac"
+    target_cpu = "x64/arm64"
+    is_debug = false
+    is_component_build = false
+   ```
+3. 构建Chromium
+  ```shell
+     autoninja -C out/Default chrome
+  ```
+
+4. 启动
+   ```shell
+   out/Default/Chromium.app/Contents/MacOS/Chromium --disable-features="DialMediaRouteProvider"
+   ```
